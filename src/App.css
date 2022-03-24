@@ -1,21 +1,17 @@
-.App {
-
+.Container {
+  margin: auto;
   width: 50%;
   text-align: center;
-  margin: auto;
-}
-
-.song {
   background-color: blanchedalmond;
   border: 10px palegoldenrod solid;
   width: 100px 100px;
 }
 
-.song img {
+.cover-song img {
   margin: 30px 0;
 }
 
-.song button {
+.button-select button {
   margin: 10px;
   font-size: 16px;
 }
