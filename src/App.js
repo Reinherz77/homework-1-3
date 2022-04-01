@@ -10,6 +10,8 @@ function App() {
   const [token, setToken] = useState("");
   const [searchSong, setSearchSong] = useState("");
   const [songData, setSongData] = useState([]);
+  const [selectedSong, setSelectedSong] = useState([])
+  const [combineSong, setCombineSong] = useState([])
 
   useEffect(() => {
     const queryString = new URL(window.location.href.replace("#", "?"))
@@ -17,6 +19,14 @@ function App() {
     const accessToken = queryString.get("access_token");
     setToken(accessToken);
   }, []);
+
+  useEffect(() => {
+    const handleCombineSong = songData.map((song) => ({
+      ...song, 
+      isSelected: selectedSong.find((data) => data === song.uri),
+    }))
+    setCombineSong(handleCombineSong)
+  }, [songData, selectedSong])
 
   const getSong = async () => {
     await axios
@@ -30,6 +40,14 @@ function App() {
         console.log(error);
       });
   };
+
+  const handleSelect = (uri) => {
+    const selected = selectedSong.find((song) => song === uri)
+    selected
+    ? setSelectedSong(selectedSong.filter((song) => song !== uri))
+    : setSelectedSong([...selectedSong, uri])
+  }
+
   return (
     <div className="App">
       <div className='Container'>
@@ -41,14 +59,18 @@ function App() {
           </div>
           
           {
-          songData.map(item => {
+          combineSong.map(item => {
+            const {uri , name , artist , album , isSelected} = item
             return(
               <CardSong
-                key={item.id}
+                key={uri}
+                uri={uri}
                 url={item.album.images[1].url}
                 title={item.name}
                 artist={item.artists[0].name}
                 album={item.album.name}
+                selectState={handleSelect}
+                isSelected={isSelected}
               />
             )
           })
