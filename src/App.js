@@ -5,6 +5,7 @@ import CardSong from './components/card-song';
 //import SearchSong from './components/search-song';
 import axios from 'axios';
 import auth from './auth';
+import PlaylistForm from './components/playlist/form-playlist';
 
 function App() {
   const [token, setToken] = useState("");
@@ -12,11 +13,31 @@ function App() {
   const [songData, setSongData] = useState([]);
   const [selectedSong, setSelectedSong] = useState([])
   const [combineSong, setCombineSong] = useState([])
+  const [userID, setUserID] = useState("")
+  // const [newPlaylist, setNewPlaylist] = useState({
+  //   title: '',
+  //   desc: '',
+  // })
 
   useEffect(() => {
     const queryString = new URL(window.location.href.replace("#", "?"))
       .searchParams;
     const accessToken = queryString.get("access_token");
+    const getUserId = () => {
+      axios
+        .get(`https://api.spotify.com/v1/me`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        })
+        .then((response) => {
+          setUserID(response.data.id);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getUserId();
     setToken(accessToken);
   }, []);
 
@@ -57,10 +78,9 @@ function App() {
             <input type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
             <button onClick={getSong}>Search</button>
           </div>
-          
           {
           combineSong.map(item => {
-            const {uri , name , artist , album , isSelected} = item
+            const {uri , isSelected} = item
             return(
               <CardSong
                 key={uri}
@@ -75,6 +95,9 @@ function App() {
             )
           })
         }
+        <div>
+          <PlaylistForm/>
+        </div>
         </div>
       </div>
     </div>
