@@ -4,9 +4,10 @@ import CardSong from '../card-song/card-song'
 //import SearchSong from './components/search-song';
 import axios from 'axios';
 // import auth from './auth';
-import auth from '../../auth/auth'
 import PlaylistForm from '../playlist/form-playlist'
 import PlaylistCard from '../playlist/card-playlist'
+import { useSelector, useDispatch } from 'react-redux';
+import { saveMyToken } from '../../redux/tokenAction'
 
 const SearchingPage = () => {
     const [token, setToken] = useState("");
@@ -24,13 +25,17 @@ const SearchingPage = () => {
         emptyView: true,
         playlistId: "",
     });
-    const access_token = new URLSearchParams(window.location.hash).get("#access_token")
+    const getToken = new URLSearchParams(window.location.hash).get("#access_token")
     const BASEURL = `https://api.spotify.com/v1`
 
     let userid = ""
     let playlistId = ""
     let newPlaylistId = ""
-
+    
+    const access_token = useSelector((state) => state.token.value)
+    const dispatch = useDispatch()
+    dispatch(saveMyToken(getToken))
+    console.log("Access Toke = ",access_token)
 
     const getUserID = async () => {
         try {
@@ -191,7 +196,6 @@ const SearchingPage = () => {
       <div className='Container'>
         <div className='SongCard'>
           <div className='Search'>
-            <button onClick={auth}>Login</button>
             <input type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
             <button onClick={getSong}>Search</button>
           </div>

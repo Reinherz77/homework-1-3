@@ -1,8 +1,8 @@
-function saveMyToken(mytoken){
-    return{
-        type: "mytoken",
-        payload: mytoken,
+function saveMyToken(token) {
+    return {
+        type: "token",
+        payload: token,
     }
 }
 
-export default saveMyToken
+export {saveMyToken}

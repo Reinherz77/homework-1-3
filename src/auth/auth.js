@@ -20,6 +20,7 @@ const SCOPES = "playlist-modify-private"
 
 const auth = () => {
     window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URL_AFTER_LOGIN}&scope=${SCOPES}&response_type=token&show_dialog=true`;
+    localStorage.setItem("isLogIn", true)
 };
 
 export default auth;

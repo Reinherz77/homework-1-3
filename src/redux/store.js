@@ -1,8 +1,8 @@
-import { configureStore } from "react-redux";
-import tokenReducer from "./tokenreducer";
+import { configureStore } from "@reduxjs/toolkit";
+import tokenReducer from "./tokenReducer";
 
-export default configureStore ({
+export default configureStore({
     reducer: {
-        mytoken: tokenReducer
+        token: tokenReducer
     }
-})
+}); 

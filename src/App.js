@@ -7,11 +7,18 @@ import './App.css';
 // import auth from './auth';
 // import PlaylistForm from './components/playlist/form-playlist';
 // import PlaylistCard from './components/playlist/card-playlist';
-import SearchingPage from './components/Search-Page/SearchPage';
+// import SearchingPage from './components/Search-Page/SearchPage';
+import { Provider } from "react-redux"
+import store from './redux/store';
+import RouterApp from './Router/Router-App';
 
 function App() {
   return (
-    <SearchingPage/>
+    <Provider store={store}>
+      <div className='App'>
+        <RouterApp />
+      </div>
+    </Provider>
   )
 }
 
