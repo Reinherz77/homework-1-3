@@ -1,25 +1,25 @@
-import logo from './logo.svg';
+// import { useEffect, useState } from 'react';
 import './App.css';
+// import CardSong from './components/card-song';
+//import data from './components/data';
+//import SearchSong from './components/search-song';
+// import axios from 'axios';
+// import auth from './auth';
+// import PlaylistForm from './components/playlist/form-playlist';
+// import PlaylistCard from './components/playlist/card-playlist';
+// import SearchingPage from './components/Search-Page/SearchPage';
+import { Provider } from "react-redux"
+import store from './redux/store';
+import RouterApp from './Router/Router-App';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Provider store={store}>
+      <div className='App'>
+        <RouterApp />
+      </div>
+    </Provider>
+  )
 }
 
 export default App;
