@@ -5,9 +5,6 @@
     background-color: greenyellow;
     border: 5px black solid;
     color: black;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
 }
 
 .title-song-playlist {

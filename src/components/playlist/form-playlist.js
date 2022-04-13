@@ -1,4 +1,5 @@
 import './form-playlist.css'
+import Button from '@mui/material/Button';
 
 const PlaylistForm = ({
     onCreate,
@@ -18,7 +19,7 @@ const PlaylistForm = ({
                 <br />
                 <input type="text" name="desc" id="desc" onChange={handleChangeDesc} />
             </div>
-            <button className='btn-form-submit' type="submit" value="submit">Submit</button>
+            <Button variant="contained" color="success" className='btn-form-submit' type="submit" value="submit">Submit</Button>
         </form>
     )
 }

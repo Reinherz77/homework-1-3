@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import CardSong from '../card-song/card-song'
-//import data from './components/data';
-//import SearchSong from './components/search-song';
 import axios from 'axios';
-// import auth from './auth';
 import PlaylistForm from '../playlist/form-playlist'
 import PlaylistCard from '../playlist/card-playlist'
 import { useSelector, useDispatch } from 'react-redux';
 import { saveMyToken } from '../../redux/tokenAction'
 import './SearchPage.css'
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import SendIcon from '@mui/icons-material/Send';
 
 const SearchingPage = () => {
     const [token, setToken] = useState("");
@@ -196,21 +196,30 @@ const SearchingPage = () => {
     <div className="App">
       <div className='Container'>
         <div className='SongCard'>
-          <div className='search'>
+          <div className='search-bar'>
             <input className='input-text' type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
-            <button className='btn-submit' onClick={getSong}>Search</button>
+            <Button color='success' variant="contained" size="small" endIcon={<SendIcon />} className='btn-submit' onClick={getSong}>
+            Search
+            </Button>
           </div>
           <div className='playlist-form'>
-          <div className='create-form'>
-            <PlaylistForm
-              onCreate={handlePlaylist}
-              handleChangeTitle={handleForm}
-              handleChangeDesc={handleForm}
-            />
+            <div className='create-form'>
+              <PlaylistForm
+                onCreate={handlePlaylist}
+                handleChangeTitle={handleForm}
+                handleChangeDesc={handleForm}
+              />
+            </div>
           </div>
-        </div>
         <div className='viewPlaylist'>
-          <button className='btn-viewPlaylist' type='submit' onClick={handleView}>View Playlist</button>
+          <Button 
+          color='success' 
+          variant='contained' 
+          className='btn-viewPlaylist' 
+          type='submit' 
+          onClick={handleView}>
+          View Playlist
+          </Button>
         </div>
         <div className='view-playlist-result'>
           <div>

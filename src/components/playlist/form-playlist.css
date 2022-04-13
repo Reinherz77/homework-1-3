@@ -1,5 +1,16 @@
 .form-playlist {
-    margin: 10px;
-    border: 1px solid greenyellow;
+    padding: 20px;
+    border: 6px solid greenyellow;
     font-size: 20px;
+    background-color: black;
+}
+
+.title-form {
+    margin: 5px;
+    padding: 5px 0;
+}
+
+.desc-form {
+    padding: 5px;
+    margin: 5px;
 }
