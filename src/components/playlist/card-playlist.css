@@ -1,0 +1,15 @@
+.playlist-card {
+    text-align: center;
+    float: left;
+    margin: 10px;
+    background-color: greenyellow;
+    border: 5px black solid;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
+
+.title-song-playlist {
+    font-weight: bold;
+}

@@ -8,6 +8,7 @@ import PlaylistForm from '../playlist/form-playlist'
 import PlaylistCard from '../playlist/card-playlist'
 import { useSelector, useDispatch } from 'react-redux';
 import { saveMyToken } from '../../redux/tokenAction'
+import './SearchPage.css'
 
 const SearchingPage = () => {
     const [token, setToken] = useState("");
@@ -195,10 +196,43 @@ const SearchingPage = () => {
     <div className="App">
       <div className='Container'>
         <div className='SongCard'>
-          <div className='Search'>
-            <input type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
-            <button onClick={getSong}>Search</button>
+          <div className='search'>
+            <input className='input-text' type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
+            <button className='btn-submit' onClick={getSong}>Search</button>
           </div>
+          <div className='playlist-form'>
+          <div className='create-form'>
+            <PlaylistForm
+              onCreate={handlePlaylist}
+              handleChangeTitle={handleForm}
+              handleChangeDesc={handleForm}
+            />
+          </div>
+        </div>
+        <div className='viewPlaylist'>
+          <button className='btn-viewPlaylist' type='submit' onClick={handleView}>View Playlist</button>
+        </div>
+        <div className='view-playlist-result'>
+          <div>
+            <p className='opening-tag-p'>{newPlaylist?.viewPlaylist.name}</p>
+            {check.emptyView ? (
+              <p>No Playlist</p>
+            ) : (
+              newPlaylist?.viewPlaylist?.tracks?.items?.map((item) => {
+                return (
+                  <PlaylistCard
+                    url={item.track.album.images[1].url}
+                    alt="Not loaded"
+                    albumName={item.track.album.name}
+                    artistName={item.track.artists[0].name}
+                    key={item.track.uri}
+                  />
+                );
+              })
+            ) 
+            }
+          </div>
+        </div>
           {
           combineSong.map(item => {
             const {uri , isSelected} = item
@@ -216,39 +250,7 @@ const SearchingPage = () => {
             )
           })
         }
-        <div className='playlist-form'>
-          <div className='create-form'>
-            <PlaylistForm
-              onCreate={handlePlaylist}
-              handleChangeTitle={handleForm}
-              handleChangeDesc={handleForm}
-            />
-          </div>
-        </div>
-        <div className='viewPlaylist'>
-          <button type='submit' onClick={handleView}>View Playlist</button>
-        </div>
-        <div>
-          <div>
-            <p>{newPlaylist?.viewPlaylist.name}</p>
-            {check.emptyView ? (
-              <p>No Playlist</p>
-            ) : (
-              newPlaylist?.viewPlaylist?.tracks?.items?.map((item) => {
-
-                return (
-                  <PlaylistCard
-                    url={item.track.album.images[0].url}
-                    alt="Not loaded"
-                    albumName={item.track.album.name}
-                    artistName={item.track.artists[0].name}
-                    key={item.track.uri}
-                  />
-                );
-              })
-            )}
-          </div>
-        </div>
+        
         </div>
       </div>
     </div>

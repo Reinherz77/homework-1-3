@@ -1,0 +1,18 @@
+.btn-select {
+    margin: 10px;
+    font-size: 16px;
+    background-color: lightgreen;
+    padding: 5px 15px;
+    color: black;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.CardSong {
+    text-align: center;
+    float: left;
+    margin: 10px;
+    background-color: greenyellow;
+    border: 5px greenyellow solid;
+    color: black;
+}
