@@ -1,5 +1,10 @@
+import React from "react";
 import auth from "../../auth/auth";
 import './LoginPage.css'
+
+// interface event = {
+//     onClick: React.MouseEventHandler<HTMLButtonElement>;
+// }
 
 function Login() {
     return(

@@ -1,12 +1,18 @@
+import React from 'react'
 import './form-playlist.css'
 import Button from '@mui/material/Button';
 
+interface playlistform {
+    onCreate: any;
+    handleChangeDesc: any;
+    handleChangeTitle: any;
+}
+
 const PlaylistForm = ({
     onCreate,
-    handleChange,
     handleChangeDesc,
     handleChangeTitle,
-}) => {
+}:playlistform) => {
     return (
         <form className='form-playlist' onSubmit={onCreate}>
             <div className='title-form'>

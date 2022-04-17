@@ -1,10 +1,19 @@
 import React from 'react';
 import ArtistAPI from '../artist-album';
-import CoverAPI from '../cover-song';
-import TitleAPI from '../title-song';
+import CoverAPI from '../cover-song/cover';
+import TitleAPI from '../title-song/title';
 import './card-song.css'
 
-const CardSong = ({url, title , artist , uri , selectState , isSelected }) => {
+interface cardsong {
+    url:string;
+    title:string;
+    artist:string;
+    uri:string;
+    selectState:any;
+    isSelected:string;
+}
+
+const CardSong = ({url, title , artist , uri , selectState , isSelected }:cardsong) => {
     return (
         <div className='CardSong'>
             <CoverAPI url={url}/>

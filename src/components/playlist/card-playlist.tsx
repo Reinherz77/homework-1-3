@@ -4,9 +4,18 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Card from '@mui/material/Card';
 import { Typography } from '@mui/material';
-import Box from '@mui/material/Box';
 
-function PlaylistCard (props){
+interface playlistcard {
+    component: string;
+    image: string;
+    height: string;
+    alt: string;
+    url: string;
+    artistName: string;
+    albumName: string;
+}
+
+function PlaylistCard (props: playlistcard){
 
     const card = (
         <React.Fragment>

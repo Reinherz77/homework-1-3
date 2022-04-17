@@ -10,6 +10,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import SendIcon from '@mui/icons-material/Send';
 
+
 const SearchingPage = () => {
     const [token, setToken] = useState("");
     const [searchSong, setSearchSong] = useState("");
@@ -36,7 +37,7 @@ const SearchingPage = () => {
     const access_token = useSelector((state) => state.token.value)
     const dispatch = useDispatch()
     dispatch(saveMyToken(getToken))
-    console.log("Access Toke = ",access_token)
+    console.log("Access Token = ",access_token)
 
     const getUserID = async () => {
         try {
@@ -187,6 +188,7 @@ const SearchingPage = () => {
     event.preventDefault();
     newPlaylistId = check.playlistId.replace("spotify:playlist:", "");
     viewPlaylist();
+    console.log(userID)
     setCheck({
       emptyView: false
     })

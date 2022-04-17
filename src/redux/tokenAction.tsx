@@ -1,4 +1,8 @@
-function saveMyToken(token) {
+interface savetoken {
+    type: any;
+}
+
+function saveMyToken(token:savetoken) {
     return {
         type: "token",
         payload: token,
