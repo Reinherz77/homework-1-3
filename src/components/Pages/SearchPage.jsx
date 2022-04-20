@@ -12,7 +12,7 @@ import SendIcon from '@mui/icons-material/Send';
 
 
 const SearchingPage = () => {
-    const [token, setToken] = useState("");
+    const [token, setToken] = useState([]);
     const [searchSong, setSearchSong] = useState("");
     const [songData, setSongData] = useState([]);
     const [selectedSong, setSelectedSong] = useState([])
