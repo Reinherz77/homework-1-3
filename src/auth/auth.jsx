@@ -20,7 +20,7 @@
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID_APP
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize"
-const REDIRECT_URL_AFTER_LOGIN = "http://localhost:3000/searchsong"
+const REDIRECT_URL_AFTER_LOGIN = "https://homework-1-3.vercel.app/searchsong"
 const SCOPES = "playlist-modify-private"
 
 // const auth = (localStorage:local) => {
