@@ -30,7 +30,7 @@ const SearchingPage = () => {
     const getToken = new URLSearchParams(window.location.hash).get("#access_token")
     const BASEURL = `https://api.spotify.com/v1`
 
-    let userid = ""
+    let userId = ""
     let playlistId = ""
     let newPlaylistId = ""
     
@@ -48,7 +48,7 @@ const SearchingPage = () => {
                 }
             })
             console.log(user.data.id)
-            userid = user.data.id
+            userId = user.data.id
         } catch (error) {
             console.log(error)
         }
@@ -57,7 +57,7 @@ const SearchingPage = () => {
   const createPlaylist = async () => {
     try {
       let create = await axios.post(
-        `${BASEURL}/users/${userid}/playlists`,
+        `${BASEURL}/users/${userId}/playlists`,
         {
           name: newPlaylist.title,
           description: newPlaylist.description,
@@ -196,7 +196,82 @@ const SearchingPage = () => {
 
   return (
     <div className="App">
-      <div className='Container'>
+      <div className='search-bar'>
+        <input type="search" placeholder='search' onChange={
+          (e) => setSearchSong(e.target.value)
+        } />
+        <Button 
+        color='success'
+        variant='contained'
+        size='small'
+        endIcon={<SendIcon />}
+        className='btn-submit'
+        onClick={getSong}>
+          Search
+        </Button>
+      </div>
+      <div className='playlist-form'>
+        <PlaylistForm 
+          onCreate={handlePlaylist}
+          handleChangeTitle={handleForm}
+          handleChangeDesc={handleForm}
+        />
+      </div>
+      <div className='btn-view-playlist'>
+        <Button 
+          color='success'
+          variant='contained'
+          className='btn-viewPlaylist'
+          type='submit'
+          onClick={handleView}
+        >
+        View Playlist
+        </Button>
+      </div>
+        
+      <div className='playlist-result'>
+        <p className='opening-tag-p'>
+          {newPlaylist?.viewPlaylist.name}
+        </p>
+        <p>
+          {newPlaylist?.viewPlaylist.description}
+        </p>
+        {check.emptyView ? (
+          <p>You have no Playlist</p>
+        ) : (
+          newPlaylist?.viewPlaylist?.tracks?.items?.map((item) => {
+            return (
+              <PlaylistCard 
+                url={item.track.album.images[1].url}
+                alt='not loaded'
+                albumName={item.track.album.name}
+                artistName={item.track.artists[0].name}
+                key={item.track.uri}
+              />
+            )
+          })
+        )}
+      </div>
+
+      {
+        combineSong.map(item => {
+          const {uri , isSelected} = item
+          return(
+            <CardSong 
+              key={uri}
+              uri={uri}
+              url={item.album.images[1].url}
+              title={item.name}
+              artist={item.artists[0].name}
+              album={item.album.name}
+              duration={item.duration_ms}
+              selectState={handleSelect}
+              isSelected={isSelected}
+            />
+          )
+        })
+      }
+      {/* <div className='Container'>
         <div className='SongCard'>
           <div className='search-bar'>
             <input className='input-text' type="search" placeholder='search' onChange={(e) => setSearchSong(e.target.value)} />
@@ -263,7 +338,7 @@ const SearchingPage = () => {
         }
         
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
