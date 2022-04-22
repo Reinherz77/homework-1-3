@@ -8,8 +8,7 @@ body {
     flex-wrap: wrap;
 }
 
-.opening-tag-p {
-    font-size: xx-large;
+.title-tag {
     font-weight: bold;
     margin: 10px;
 }
@@ -39,9 +38,8 @@ body {
     margin: 0 10px;
 }
 
-.btn-viewPlaylist {
+.btn-view-playlist {
     font-weight: bold;
-    background-color: greenyellow;
     border-radius: 3px;
     padding: 7px;
     margin: 10px;

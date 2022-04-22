@@ -60,7 +60,7 @@ const SearchingPage = () => {
         `${BASEURL}/users/${userId}/playlists`,
         {
           name: newPlaylist.title,
-          description: newPlaylist.description,
+          description: newPlaylist.desc,
           public: false,
           collaborative: false,
         },
@@ -169,8 +169,8 @@ const SearchingPage = () => {
   }
 
   const handleForm = (event) => {
-    const {name , value} = event.target
-    setNewPlaylist({...newPlaylist, [name]: value})
+    const {name , value , description} = event.target
+    setNewPlaylist({...newPlaylist, [name]: value, [description]: value})
   }
 
   const handlePlaylist = async (event) => {
@@ -197,10 +197,11 @@ const SearchingPage = () => {
   return (
     <div className="App">
       <div className='search-bar'>
-        <input type="search" placeholder='search' onChange={
+        <input className='search-input' type="search" placeholder='Search song here' onChange={
           (e) => setSearchSong(e.target.value)
         } />
         <Button 
+        padding={10}
         color='success'
         variant='contained'
         size='small'
@@ -230,9 +231,9 @@ const SearchingPage = () => {
       </div>
         
       <div className='playlist-result'>
-        <p className='opening-tag-p'>
+        <h1 className='title-tag'>
           {newPlaylist?.viewPlaylist.name}
-        </p>
+        </h1>
         <p>
           {newPlaylist?.viewPlaylist.description}
         </p>

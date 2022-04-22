@@ -18,7 +18,7 @@ const PlaylistForm = ({
             <div className='title-form'>
                 <label>Title</label>
                 <br />
-                <input type="text" name="title" id="title" onChange={handleChangeTitle} />
+                <input maxLength={10} type="text" name="title" id="title" onChange={handleChangeTitle} />
             </div>
             <div className='desc-form'>
                 <label>Description</label>
